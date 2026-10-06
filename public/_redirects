@@ -1,0 +1,7 @@
+# Copied into dist/ by the shell build (same rules as netlify.toml). Only needed
+# for path-style deep links such as /entertainment/movies; the app itself works
+# without rewrites.
+/app/ascend/*     /app/ascend/index.html    200
+/app/vault/*      /app/vault/index.html     200
+/app/opinions/*   /app/opinions/index.html  200
+/*                /index.html               200

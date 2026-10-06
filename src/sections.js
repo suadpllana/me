@@ -1,7 +1,11 @@
 // The tabs of the shell. `app` is where the hosted app is served from (see
-// netlify.toml and scripts/build.mjs); `path` is the shell URL for the tab.
-// A hosted app's own route is mirrored after the tab path, so
-// /entertainment/movies shows /app/vault/movies.
+// scripts/build.mjs); `path` is the shell URL for the tab.
+//
+// The hosted app's own route travels in the shell URL's hash, e.g.
+// /entertainment#/movies shows /app/vault/movies and /self-improvement#/stats
+// shows /app/ascend/#/stats. Keeping it in the hash means every shell URL maps
+// to a real file, so deep links and refreshes work without server rewrites.
+// `router` says how the app routes: 'hash' (HashRouter) or 'path' (BrowserRouter).
 export const SECTIONS = [
   { key: 'home', path: '/', label: 'Home', short: 'Home' },
   {
@@ -10,6 +14,7 @@ export const SECTIONS = [
     label: 'Self Improvement',
     short: 'Improve',
     app: '/app/ascend/',
+    router: 'hash',
     title: 'Ascend: self-improvement tracker',
     accent: 'var(--c-self)',
   },
@@ -19,6 +24,7 @@ export const SECTIONS = [
     label: 'Entertainment',
     short: 'Media',
     app: '/app/vault/',
+    router: 'path',
     title: 'Vault: entertainment tracker',
     accent: 'var(--c-media)',
   },
@@ -28,6 +34,7 @@ export const SECTIONS = [
     label: 'My Opinions',
     short: 'Opinions',
     app: '/app/opinions/',
+    router: 'hash',
     title: 'The Case Against God',
     accent: 'var(--c-opinions)',
   },
@@ -40,14 +47,30 @@ export function sectionForPath(pathname) {
   )
 }
 
-// Shell URL -> hosted app URL. "/entertainment/movies?x#y" -> "/app/vault/movies?x#y"
-export function appUrlFor(section, { pathname, search, hash }) {
-  const rest = pathname.slice(section.path.length).replace(/^\//, '')
-  return section.app + rest + search + hash
+// The app route ("/movies", "/stats", "" for the app's home) in a shell URL.
+// Also accepts the path form /entertainment/movies (used by older links).
+export function routeFromShell(section, { pathname, search, hash }) {
+  if (hash.length > 1) return normalize(hash.slice(1))
+  const rest = pathname.slice(section.path.length).replace(/^\/+/, '')
+  return rest ? normalize('/' + rest + search) : ''
 }
 
-// Hosted app URL -> shell URL. The inverse of appUrlFor.
-export function shellUrlFor(section, { pathname, search, hash }) {
+// The app route a hosted app's frame is currently showing.
+export function routeFromApp(section, { pathname, search, hash }) {
+  if (section.router === 'hash') return normalize(hash.slice(1))
   const rest = pathname.startsWith(section.app) ? pathname.slice(section.app.length) : ''
-  return section.path + (rest ? '/' + rest : '') + search + hash
+  return normalize('/' + rest + search + hash)
 }
+
+export const shellUrl = (section, route) => section.path + (route ? '#' + route : '')
+
+// URL that loads the app showing `route`. Path-routed apps always load their
+// root (a real file) and are moved to the route after load, see AppFrame.
+export function appSrc(section, route) {
+  if (section.router === 'hash') return section.app + (route ? '#' + route : '')
+  return section.app
+}
+
+export const appPathFor = (section, route) => section.app + route.replace(/^\//, '')
+
+const normalize = (route) => (route === '/' ? '' : route)

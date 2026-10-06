@@ -31,4 +31,10 @@ cpSync(join(root, 'apps', 'opinions'), join(dist, 'app', 'opinions'), {
   filter: (src) => !src.endsWith('README.md'),
 })
 
+// Give every tab a real entry file, so /self-improvement etc. load the shell
+// even where no SPA rewrite is configured.
+for (const section of ['self-improvement', 'entertainment', 'opinions']) {
+  cpSync(join(dist, 'index.html'), join(dist, section, 'index.html'))
+}
+
 console.log('\nBuilt dist/')

@@ -9,23 +9,14 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# Device sync. The hosted apps call these paths, which are proxied to the sync
-# functions of the original sites. A sync code from ascendpath.netlify.app or
-# all-in-one-media.netlify.app therefore opens the SAME data here, and both
-# keep syncing with each other.
-[[redirects]]
-  from = "/api/ascend-sync"
-  to = "https://ascendpath.netlify.app/.netlify/functions/sync"
-  status = 200
-  force = true
+# Sync: the apps call /.netlify/functions/{ascend,vault}-sync, which relay to the
+# original sites' sync functions (see netlify/functions).
+[functions]
+  directory = "netlify/functions"
 
-[[redirects]]
-  from = "/api/vault-sync"
-  to = "https://all-in-one-media.netlify.app/.netlify/functions/sync"
-  status = 200
-  force = true
-
-# SPA fallbacks for each hosted app (real files are served first).
+# The app needs no rewrites: every tab has a real index.html and app routes live
+# in the URL hash. These fallbacks only make path-style deep links such as
+# /entertainment/movies work. (public/_redirects carries the same rules.)
 [[redirects]]
   from = "/app/ascend/*"
   to = "/app/ascend/index.html"
@@ -41,7 +32,6 @@
   to = "/app/opinions/index.html"
   status = 200
 
-# Everything else is the shell (/, /self-improvement, /entertainment/..., /opinions).
 [[redirects]]
   from = "/*"
   to = "/index.html"

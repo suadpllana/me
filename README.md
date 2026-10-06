@@ -17,18 +17,20 @@ apps/ascend/      Self Improvement app, built to dist/app/ascend/
 apps/vault/       Entertainment app,    built to dist/app/vault/
 apps/opinions/    My Opinions, prebuilt static files -> dist/app/opinions/
 scripts/build.mjs builds all of the above into dist/
-netlify.toml      SPA fallbacks + the sync proxies
+netlify/functions sync relays to the original sites
+netlify.toml      build settings, functions, optional SPA fallbacks
 ```
 
 Each tab shows its app in a same-origin frame that stays alive while you
-switch tabs. The app's own route is mirrored into the address bar, so
-`/entertainment/books` or `/self-improvement#/stats` can be bookmarked and
-refreshed.
+switch tabs. The app's own route is mirrored into the address bar's hash, so
+`/entertainment#/books` or `/self-improvement#/stats` can be bookmarked and
+refreshed. Every tab has a real `index.html`, so the site works on any static
+host without rewrite rules.
 
 Changes made to the copied apps:
 
 - Vite `base` set to `/app/<name>/` (and `BrowserRouter basename` for Vault).
-- Sync endpoint changed to `/api/ascend-sync` / `/api/vault-sync`.
+- Sync endpoint changed to `/.netlify/functions/ascend-sync` / `vault-sync`.
 - Ascend's "Media tracker" link opens the Entertainment tab instead of the old site.
 
 ## Data
@@ -36,7 +38,7 @@ Changes made to the copied apps:
 All data stays in the browser's `localStorage`. Because every tab is served
 from this one site, the home page can read the same data the apps write.
 
-Device sync: `/api/ascend-sync` and `/api/vault-sync` are proxied to the sync
+Device sync: the `ascend-sync` and `vault-sync` functions relay to the sync
 functions of **ascendpath.netlify.app** and **all-in-one-media.netlify.app**.
 Entering a sync code from an old app here opens the same data, and the old app
 and this one keep syncing with each other.

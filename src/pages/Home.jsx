@@ -169,7 +169,7 @@ export default function Home() {
                 all-in-one-media.netlify.app/account
               </a>{' '}
               and under <b>Device sync</b> create a sync code. Then enter it under{' '}
-              <a href="/entertainment/account" onClick={(e) => go(e, '/entertainment/account')}>
+              <a href="/entertainment#/account" onClick={(e) => go(e, '/entertainment#/account')}>
                 Entertainment &rsaquo; Settings &rsaquo; Link device
               </a>
               . A JSON backup from the old Settings page can be restored there too.

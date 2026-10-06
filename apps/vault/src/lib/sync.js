@@ -11,9 +11,9 @@ import { localLibrary, LIBRARY_CHANGED_EVENT } from './localLibrary'
 // in between — merge its returned document and retry. There is no realtime
 // channel, so devices also poll while visible and re-sync on focus.
 
-// Proxied (see root netlify.toml) to the original Vault site so the same sync
+// Relayed (see netlify/functions/vault-sync.mjs) to the original Vault site so the same sync
 // code shares one document between all-in-one-media.netlify.app and this app.
-const ENDPOINT = '/api/vault-sync'
+const ENDPOINT = '/.netlify/functions/vault-sync'
 const CODE_KEY = 'vault:sync:code'
 const CODE_RE = /^[a-z0-9][a-z0-9-]{7,63}$/
 const PUSH_DEBOUNCE_MS = 800

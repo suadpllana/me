@@ -15,9 +15,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 //   - after that: if both sides changed, maps are merged with the LOCAL value
 //     winning per key (the local change is the user's most recent action),
 //     completions are unioned per day.
-// Proxied (see root netlify.toml) to the original Ascend site so the same sync
+// Relayed (see netlify/functions/ascend-sync.mjs) to the original Ascend site so the same sync
 // code shares one document between ascendpath.netlify.app and this app.
-const ENDPOINT = "/api/ascend-sync";
+const ENDPOINT = "/.netlify/functions/ascend-sync";
 const PUSH_DEBOUNCE_MS = 1500;
 const POLL_MS = 60_000;
 

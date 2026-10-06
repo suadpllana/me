@@ -26,7 +26,7 @@ export default function App() {
   lastUrl.current[active.key] = loc.pathname + loc.search + loc.hash
 
   useEffect(() => {
-    document.title = active.app ? `${active.label} · Suad Pllana` : 'Suad Pllana'
+    document.title = active.app ? `${active.label} · Me` : 'Me'
     document.documentElement.dataset.section = active.key
   }, [active])
 

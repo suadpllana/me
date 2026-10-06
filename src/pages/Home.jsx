@@ -1,7 +1,6 @@
 import { Icon } from '../components/Icon'
 import { navigate } from '../lib/router'
 import { useSnapshot } from '../lib/snapshot'
-import { PROFILE } from '../profile'
 
 const nf = new Intl.NumberFormat()
 
@@ -49,17 +48,10 @@ export default function Home() {
   return (
     <div className="home">
       <section className="hero">
-        <p className="hero-eyebrow">Hi, I&rsquo;m</p>
-        <h1 className="hero-name">{PROFILE.name}</h1>
+        <h1 className="hero-name">Everything in one place</h1>
         <p className="hero-lede">
-          I&rsquo;m {PROFILE.age} years old, and this is everything about me: how I&rsquo;m working
-          on myself, everything I watch, read and play, and what I think about the big questions.
+          Self improvement, everything watched, read and played, and opinions on the big questions.
         </p>
-        <ul className="facts">
-          <li>{PROFILE.age} years old</li>
-          <li>Leveling up until 1 July 2027</li>
-          <li>Always watching something</li>
-        </ul>
       </section>
 
       <section className="cards" aria-label="Sections">
@@ -178,9 +170,6 @@ export default function Home() {
         </ol>
       </section>
 
-      <footer className="foot">
-        <span>&copy; {new Date().getFullYear()} {PROFILE.name}</span>
-      </footer>
     </div>
   )
 }

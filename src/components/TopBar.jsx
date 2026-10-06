@@ -1,5 +1,4 @@
 import { navigate } from '../lib/router'
-import { PROFILE } from '../profile'
 import { SECTIONS } from '../sections'
 import { Icon } from './Icon'
 
@@ -13,9 +12,9 @@ export default function TopBar({ active, lastUrl }) {
 
   return (
     <header className="topbar">
-      <a className="brand" href="/" onClick={(e) => go(e, SECTIONS[0])} aria-label={`${PROFILE.name}, home`}>
-        <span className="brand-mark" aria-hidden="true">SP</span>
-        <span className="brand-name">{PROFILE.name}</span>
+      <a className="brand" href="/" onClick={(e) => go(e, SECTIONS[0])} aria-label="Home">
+        <span className="brand-mark" aria-hidden="true">Me</span>
+        <span className="brand-name">Me</span>
       </a>
       <nav className="tabs" aria-label="Sections">
         {SECTIONS.map((s) => (

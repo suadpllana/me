@@ -209,18 +209,10 @@ code {
   pointer-events: none;
 }
 
-.hero-eyebrow {
-  margin: 0 0 8px;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
 
 .hero-name {
   margin: 0;
-  font-size: clamp(44px, 9vw, 92px);
+  font-size: clamp(36px, 7vw, 72px);
   line-height: 0.95;
   font-weight: 800;
   letter-spacing: -0.045em;
@@ -238,22 +230,6 @@ code {
   color: var(--ink-2);
 }
 
-.facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 28px 0 0;
-  padding: 0;
-  list-style: none;
-}
-.facts li {
-  padding: 7px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--edge);
-  background: var(--bg-raised);
-  font-size: 14px;
-  color: var(--ink-2);
-}
 
 .cards {
   display: grid;
@@ -494,13 +470,6 @@ code {
   background: rgba(74, 222, 128, 0.08);
 }
 
-.foot {
-  margin-top: 48px;
-  padding-top: 20px;
-  border-top: 1px solid var(--edge);
-  font-size: 13px;
-  color: var(--ink-3);
-}
 
 /* ---------- responsive ---------- */
 

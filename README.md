@@ -1,10 +1,10 @@
 # me
 
-Everything about Suad Pllana in one app.
+Self improvement, entertainment and opinions in one app.
 
 | Tab | URL | What it is |
 | --- | --- | --- |
-| Home | `/` | Who I am, plus live numbers from the other tabs |
+| Home | `/` | Live numbers from the other tabs |
 | Self Improvement | `/self-improvement` | **Ascend** (from [solo-leveling](https://github.com/suadpllana/solo-leveling) @ `6c987b1`) |
 | Entertainment | `/entertainment` | **Vault** (from [all-in-one](https://github.com/suadpllana/all-in-one) @ `fbd4237`) |
 | My Opinions | `/opinions` | **The Case Against God** (prebuilt copy of disprovinggod.netlify.app) |

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Everything about Suad Pllana: a home page plus Self Improvement (Ascend), Entertainment (Vault) and My Opinions in one app.",
+  "description": "A home page plus Self Improvement (Ascend), Entertainment (Vault) and My Opinions in one app.",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/build.mjs",

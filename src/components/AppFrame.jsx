@@ -17,7 +17,7 @@ function goTo(win, section, route) {
 //
 // The app's own route is mirrored into the shell URL's hash, which keeps deep
 // links and refreshes working: /entertainment#/movies <-> /app/vault/movies.
-export default function AppFrame({ section, src, initialRoute, route, active }) {
+export default function AppFrame({ section, src, initialRoute, route, active, belowSubnav }) {
   const ref = useRef(null)
   const activeRef = useRef(active)
   const startedRef = useRef(false)
@@ -80,7 +80,7 @@ export default function AppFrame({ section, src, initialRoute, route, active }) 
   return (
     <iframe
       ref={ref}
-      className="app-frame"
+      className={belowSubnav ? 'app-frame below-subnav' : 'app-frame'}
       src={src}
       title={section.title}
       onLoad={onLoad}

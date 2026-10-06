@@ -1,5 +1,6 @@
 import { Icon } from '../components/Icon'
 import LinkData from '../components/LinkData'
+import { TOPICS } from '../opinions/topics'
 import { navigate } from '../lib/router'
 import { useSnapshot } from '../lib/snapshot'
 
@@ -106,16 +107,19 @@ export default function Home() {
           section="opinions"
           href="/opinions"
           eyebrow="My Opinions"
-          title="The Case Against God"
-          blurb="Arguments with their premises, the strongest counter-argument, and a response. No strawmen."
+          title="Religion, politics and more"
+          blurb="The Case Against God, plus my takes on geopolitics, Kosovo, the Balkans, the economy and society."
         >
           <div className="stats">
-            <Stat value="170" label="arguments" />
-            <Stat value="46" label="quotes" />
+            <Stat value="170" label="arguments on religion" />
+            <Stat value={TOPICS.length} label="more topics" />
           </div>
           <ul className="chips">
-            {['Philosophy', 'Islam', 'Biology', 'Psychology', 'Concepts', 'Quotes'].map((t) => (
-              <li key={t}>{t}</li>
+            <li>Religion</li>
+            {TOPICS.map((t) => (
+              <li key={t.slug}>
+                {t.label}
+              </li>
             ))}
           </ul>
         </SectionCard>

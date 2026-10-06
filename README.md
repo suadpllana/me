@@ -7,7 +7,7 @@ Self improvement, entertainment and opinions in one app.
 | Home | `/` | Live numbers from the other tabs |
 | Self Improvement | `/self-improvement` | **Ascend** (from [solo-leveling](https://github.com/suadpllana/solo-leveling) @ `6c987b1`) |
 | Entertainment | `/entertainment` | **Vault** (from [all-in-one](https://github.com/suadpllana/all-in-one) @ `fbd4237`) |
-| My Opinions | `/opinions` | **The Case Against God** (prebuilt copy of disprovinggod.netlify.app) |
+| My Opinions | `/opinions` | Sub-tabs: **Religion** (The Case Against God, prebuilt copy of disprovinggod.netlify.app) plus written topics (Geopolitics, Kosovo, Balkans, Economy, Society) |
 
 ## How it fits together
 
@@ -32,6 +32,13 @@ Changes made to the copied apps:
 - Vite `base` set to `/app/<name>/` (and `BrowserRouter basename` for Vault).
 - Sync endpoint changed to `/.netlify/functions/ascend-sync` / `vault-sync`.
 - Ascend's "Media tracker" link opens the Entertainment tab instead of the old site.
+
+## Writing opinions
+
+The written topics live in `src/opinions/topics.js`. Each post is a title, date,
+summary and a list of paragraphs (`## ` heading, `- ` bullet, `> ` quote). The
+current posts are placeholders marked `draft: true`; replace them, and delete
+`draft` once a post is real. Links look like `/opinions#/topic/kosovo/elections`.
 
 ## Data
 

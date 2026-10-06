@@ -16,6 +16,7 @@
   --c-opinions: #fbbf24;
 
   --topbar-h: 56px;
+  --subnav-h: 48px;
   --radius: 18px;
   --font: 'Inter Variable', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
@@ -182,6 +183,169 @@ code {
 }
 .app-frame[hidden] {
   display: none;
+}
+
+.app-frame.below-subnav {
+  top: calc(var(--topbar-h) + var(--subnav-h) + env(safe-area-inset-top));
+  height: calc(100dvh - var(--topbar-h) - var(--subnav-h) - env(safe-area-inset-top));
+}
+
+/* ---------- opinions ---------- */
+
+.subnav {
+  position: fixed;
+  top: calc(var(--topbar-h) + env(safe-area-inset-top));
+  left: 0;
+  right: 0;
+  z-index: 9;
+  height: var(--subnav-h);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 max(16px, env(safe-area-inset-left));
+  overflow-x: auto;
+  scrollbar-width: none;
+  border-bottom: 1px solid var(--edge);
+  background: var(--bg);
+}
+.subnav::-webkit-scrollbar {
+  display: none;
+}
+.subtab {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.subtab:hover {
+  color: var(--ink);
+  background: var(--bg-raised);
+}
+.subtab[aria-current='page'] {
+  color: #1a1305;
+  background: var(--c-opinions);
+}
+
+.topic {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: calc(var(--subnav-h) + 40px) 16px 80px;
+}
+.topic-head h1,
+.post h1 {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.topic-head p {
+  margin: 12px 0 0;
+  font-size: 17px;
+  color: var(--ink-2);
+}
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.post-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  border: 1px solid var(--edge);
+  border-left: 3px solid var(--c-opinions);
+  background: var(--bg-raised);
+  color: inherit;
+  text-decoration: none;
+}
+.post-list a:hover {
+  border-color: var(--edge-hi);
+  border-left-color: var(--c-opinions);
+}
+.post-title {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+.post-summary {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.post-draft {
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px dashed var(--c-opinions);
+  color: var(--c-opinions);
+  font-size: 11px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.post-missing {
+  color: #f87171;
+}
+.post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--c-opinions);
+  text-decoration: none;
+}
+.post-back svg {
+  transform: rotate(180deg);
+}
+.post header .post-meta {
+  margin-bottom: 10px;
+}
+.post header .post-summary {
+  margin: 14px 0 0;
+  font-size: 18px;
+}
+.post-body {
+  margin-top: 32px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.post-body h2 {
+  margin: 36px 0 8px;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+.post-body p,
+.post-body ul {
+  margin: 0 0 16px;
+}
+.post-body li {
+  margin-bottom: 6px;
+}
+.post-body blockquote {
+  margin: 0 0 16px;
+  padding: 4px 0 4px 18px;
+  border-left: 3px solid var(--c-opinions);
+  color: var(--ink-2);
+  font-style: italic;
 }
 
 /* ---------- home ---------- */

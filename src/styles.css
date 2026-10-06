@@ -470,6 +470,54 @@ code {
   background: rgba(74, 222, 128, 0.08);
 }
 
+.code-input {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--edge-hi);
+  background: var(--bg-raised);
+  color: var(--ink);
+  font: 500 15px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.04em;
+}
+.code-input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.step .check-ok {
+  margin-top: 8px;
+  color: #4ade80;
+}
+.step .check-bad {
+  margin-top: 8px;
+  color: #f87171;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: var(--ink);
+  color: var(--bg);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.btn-ghost {
+  margin-top: 18px;
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--edge-hi);
+}
 
 /* ---------- responsive ---------- */
 

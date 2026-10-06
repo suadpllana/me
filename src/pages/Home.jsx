@@ -1,4 +1,5 @@
 import { Icon } from '../components/Icon'
+import LinkData from '../components/LinkData'
 import { navigate } from '../lib/router'
 import { useSnapshot } from '../lib/snapshot'
 
@@ -120,66 +121,8 @@ export default function Home() {
         </SectionCard>
       </section>
 
-      <section className="data" aria-labelledby="data-title">
-        <div className="data-intro">
-          <h2 id="data-title">
-            <Icon name="link" size={20} /> Bring my data over
-          </h2>
-          <p>
-            Browsers keep every website&rsquo;s saved data separate, so progress saved on{' '}
-            <code>ascendpath.netlify.app</code> and <code>all-in-one-media.netlify.app</code> does
-            not show up here on its own. Link each app once with its sync code. After that this site
-            and the old app share the same data, on every device.
-          </p>
-        </div>
-        <ol className="steps">
-          <li className="step" data-section="self">
-            <div className="step-head">
-              <strong>Self Improvement</strong>
-              <LinkStatus linked={ascend.linked} />
-            </div>
-            <p>
-              On the PC with your progress, open{' '}
-              <a href="https://ascendpath.netlify.app/" target="_blank" rel="noreferrer">
-                ascendpath.netlify.app
-              </a>
-              , tap <b>Sync</b> (the cloud icon) and create a sync code (or copy the one you already use). Then open{' '}
-              <a href="/self-improvement" onClick={(e) => go(e, '/self-improvement')}>
-                Self Improvement
-              </a>{' '}
-              here, tap <b>Sync</b> and enter the same code.
-            </p>
-          </li>
-          <li className="step" data-section="media">
-            <div className="step-head">
-              <strong>Entertainment</strong>
-              <LinkStatus linked={vault.linked} />
-            </div>
-            <p>
-              Open{' '}
-              <a href="https://all-in-one-media.netlify.app/account" target="_blank" rel="noreferrer">
-                all-in-one-media.netlify.app/account
-              </a>{' '}
-              and under <b>Device sync</b> create a sync code. Then enter it under{' '}
-              <a href="/entertainment#/account" onClick={(e) => go(e, '/entertainment#/account')}>
-                Entertainment &rsaquo; Settings &rsaquo; Link device
-              </a>
-              . A JSON backup from the old Settings page can be restored there too.
-            </p>
-          </li>
-        </ol>
-      </section>
-
+      <LinkData />
     </div>
   )
 }
 
-function LinkStatus({ linked }) {
-  return linked ? (
-    <span className="badge badge-ok">
-      <Icon name="check" size={14} /> Linked
-    </span>
-  ) : (
-    <span className="badge">Not linked</span>
-  )
-}

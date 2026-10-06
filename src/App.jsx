@@ -3,6 +3,7 @@ import TopBar from './components/TopBar'
 import AppFrame from './components/AppFrame'
 import Home from './pages/Home'
 import { useLocation } from './lib/router'
+import { getCodes } from './lib/link'
 import { SECTIONS, appSrc, routeFromShell, sectionForPath } from './sections'
 
 export default function App() {
@@ -12,9 +13,17 @@ export default function App() {
   // Each frame's src is fixed when it is first opened. Later URL changes come
   // from the frame itself (mirrored up), so changing src would only reload it.
   // opened: { [sectionKey]: route the frame was first opened at }
-  const [opened, setOpened] = useState(() =>
-    active.app ? { [active.key]: routeFromShell(active, loc) } : {},
-  )
+  const [opened, setOpened] = useState(() => {
+    const initial = active.app ? { [active.key]: routeFromShell(active, loc) } : {}
+    // Linked apps load in the background so they sync right away and the home
+    // page numbers stay current without opening each tab.
+    const codes = getCodes()
+    const linked = { self: codes.ascend, media: codes.vault }
+    for (const s of SECTIONS) {
+      if (linked[s.key] && !(s.key in initial)) initial[s.key] = ''
+    }
+    return initial
+  })
   useEffect(() => {
     if (active.app && !(active.key in opened)) {
       setOpened((o) => ({ ...o, [active.key]: routeFromShell(active, loc) }))

@@ -1,0 +1,59 @@
+# One site: the shell at / and three hosted apps under /app/<name>/.
+# `npm run build` runs scripts/build.mjs, which builds everything into dist/.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# vite 8 needs node ^20.19 || >=22.12
+[build.environment]
+  NODE_VERSION = "22"
+
+# Device sync. The hosted apps call these paths, which are proxied to the sync
+# functions of the original sites. A sync code from ascendpath.netlify.app or
+# all-in-one-media.netlify.app therefore opens the SAME data here, and both
+# keep syncing with each other.
+[[redirects]]
+  from = "/api/ascend-sync"
+  to = "https://ascendpath.netlify.app/.netlify/functions/sync"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/vault-sync"
+  to = "https://all-in-one-media.netlify.app/.netlify/functions/sync"
+  status = 200
+  force = true
+
+# SPA fallbacks for each hosted app (real files are served first).
+[[redirects]]
+  from = "/app/ascend/*"
+  to = "/app/ascend/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/app/vault/*"
+  to = "/app/vault/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/app/opinions/*"
+  to = "/app/opinions/index.html"
+  status = 200
+
+# Everything else is the shell (/, /self-improvement, /entertainment/..., /opinions).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Hashed build assets never change; cache them for a year.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/app/*/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
